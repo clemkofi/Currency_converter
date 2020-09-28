@@ -1,0 +1,75 @@
+.grid-container {
+  margin: 20px;
+}
+
+.dashboard-card-sending {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  background-color: rgb(4, 125, 165);
+  color: white;
+}
+
+.dashboard-card-receiving {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  background-color: #FA5331;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 8px;
+  
+}
+
+.card-grid > div {
+  display: flex;
+  color: white;
+  font-weight: bold;
+  justify-content: baseline;
+  padding-left: 15px;
+}
+
+.example-form-field {
+  width: 200px;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: white !important;
+ }
+
+ ::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: white !important;
+} 
+
+::ng-deep.mat-form-field-ripple {
+ /*change color of underline when focused*/
+ background-color: white !important;
+}
+
+::ng-deep .mat-form-field-placeholder{
+  color:white !important;
+}
+
+::ng-deep .mat-focused .mat-form-field-placeholder{
+  color:white !important;
+}

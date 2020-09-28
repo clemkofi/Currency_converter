@@ -1,0 +1,148 @@
+<div class="grid-container">
+  <mat-grid-list cols="2" rowHeight="350px">
+    <!-- sending section -->
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card-sending">
+        <mat-card-header>
+          <mat-card-title>
+            Money to convert
+            <button
+              mat-icon-button
+              class="more-button"
+              [matMenuTriggerFor]="menu"
+              aria-label="Toggle menu"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div class="card-grid">
+            <div>I want to convert</div>
+            <div>From</div>
+          </div>
+
+          <form>
+            <div class="card-grid">
+              <div style="font-size: 25px">
+                <mat-form-field>
+                  <mat-label>Amount Here!</mat-label>
+                  <input
+                    matInput
+                    type="text"
+                    [(ngModel)]="amount"
+                    placeholder="Ex. 100.00"
+                    name="amount"
+                  />
+                  <button
+                    mat-button
+                    *ngIf="amount"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="value = ''"
+                  >
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+              <div style="font-size: 25px">
+                <mat-form-field>
+                  <mat-label>Currency</mat-label>
+                  <mat-select [(ngModel)]="selectedValueSending" name="currency">
+                    <mat-option value="GHS"> ₵ GHS </mat-option>
+                    <mat-option value="USD"> $ USD </mat-option>
+                    <mat-option value="EUR"> € EUR </mat-option>
+                    <mat-option value="GHS"> £ GBP </mat-option>
+                    <mat-option value="GHS"> ¥ JBY </mat-option>
+                    <mat-option value="GHS"> ₹ INR </mat-option>
+                    <mat-option value="GHS"> R ZAR </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <!-- receiving section -->
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card-receiving">
+        <mat-card-header>
+          <mat-card-title>
+            Money to receive
+            <button
+              mat-icon-button
+              class="more-button"
+              [matMenuTriggerFor]="menu"
+              aria-label="Toggle menu"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <!-- labels for receiving section -->
+          <div class="card-grid">
+            <div>You will obtain</div>
+            <div>To</div>
+          </div>
+
+          <!-- amount and currency selection for receiving section -->
+          <form>
+            <div class="card-grid">
+              <div style="font-size: 25px">
+                <mat-form-field>
+                  <mat-label>Amount Here!</mat-label>
+                  <input
+                    matInput
+                    type="text"
+                    [(ngModel)]="amount"
+                    placeholder="Ex. 100.00"
+                    name="amount"
+                    readonly
+                  />
+                  <button
+                    mat-button
+                    *ngIf="amount"
+                    matSuffix
+                    mat-icon-button
+                    aria-label="Clear"
+                    (click)="value = ''"
+                  >
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+              <div style="font-size: 25px">
+                <mat-form-field>
+                  <mat-label>Currency</mat-label>
+                  <mat-select [(ngModel)]="selectedValueReceiving" name="currency">
+                    <mat-option value="GHS"> ₵ GHS </mat-option>
+                    <mat-option value="USD"> $ USD </mat-option>
+                    <mat-option value="EUR"> € EUR </mat-option>
+                    <mat-option value="GHS"> £ GBP </mat-option>
+                    <mat-option value="GHS"> ¥ JBY </mat-option>
+                    <mat-option value="GHS"> ₹ INR </mat-option>
+                    <mat-option value="GHS"> R ZAR </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+            </div>
+          </form>
+          
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
