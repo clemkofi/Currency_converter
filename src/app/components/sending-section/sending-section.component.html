@@ -1,1 +1,70 @@
-<p>sending-section works!</p>
+
+  <mat-card class="dashboard-card-sending">
+    <mat-card-header>
+      <mat-card-title> Money to convert </mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="dashboard-card-content">
+      <div class="card-grid">
+        <div>I want to convert</div>
+        <div>From</div>
+      </div>
+
+      <form>
+        <div class="card-grid">
+          <div style="font-size: 25px">
+            <mat-form-field>
+              <mat-label>Amount Here!</mat-label>
+              <input
+                matInput
+                type="text"
+                [(ngModel)]="sendingAmount"
+                placeholder="Ex. 100.00"
+                name="sendingAmount"
+                (ngModelChange)="onChangeAmount($event)"
+              />
+              <button
+                mat-button
+                *ngIf="sendingAmount"
+                matSuffix
+                mat-icon-button
+                aria-label="Clear"
+                (click)="clearAmounts()"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+              <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                  Please enter a valid email address
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')">
+                  Email is <strong>required</strong>
+                </mat-error> -->
+            </mat-form-field>
+          </div>
+          <div style="font-size: 25px">
+            <mat-form-field>
+              <mat-label>Currency</mat-label>
+              <mat-select
+                [ngModel]="selectedValueSending"
+                [(value)]="selectedValueSending"
+                name="currency"
+                (ngModelChange)="onChangeSendingCurrency($event)"
+              >
+                <mat-option
+                  [value]="option.name"
+                  *ngFor="let option of currencies"
+                  >{{ option.symbol + " " + option.name }}</mat-option
+                >
+                <!-- <mat-option value="GHS"> ₵ GHS </mat-option>
+                  <mat-option value="USD"> $ USD </mat-option>
+                  <mat-option value="EUR"> € EUR </mat-option>
+                  <mat-option value="GBP"> £ GBP </mat-option>
+                  <mat-option value="JBY"> ¥ JBY </mat-option>
+                  <mat-option value="INR"> ₹ INR </mat-option>
+                  <mat-option value="ZAR"> R ZAR </mat-option> -->
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>

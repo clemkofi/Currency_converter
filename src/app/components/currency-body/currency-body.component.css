@@ -2,15 +2,7 @@
   margin: 20px;
 }
 
-.dashboard-card-sending {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
-  background-color: rgb(4, 125, 165);
-  color: white;
-}
+
 
 .dashboard-card-receiving {
   position: absolute;

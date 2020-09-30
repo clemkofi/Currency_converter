@@ -1,0 +1,30 @@
+.dashboard-card-sending {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    background-color: rgb(4, 125, 165);
+    color: white;
+  }
+
+  .dashboard-card-content {
+    text-align: center;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 8px;
+    
+  }
+  
+  .card-grid > div {
+    display: flex;
+    color: white;
+    font-weight: bold;
+    justify-content: baseline;
+    padding-left: 15px;
+  }
+

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { Currency } from 'src/app/models/currency';
+import { CurrencyService } from 'src/app/services/currency.service';
 
 @Component({
   selector: 'app-currency-body',
@@ -8,30 +8,68 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
   styleUrls: ['./currency-body.component.css'],
 })
 export class CurrencyBodyComponent {
-  amount = '';
+  sendingAmount = '';
+  receivingAmount = '';
   selectedValueSending: string;
   selectedValueReceiving: string;
+  currencies: Currency[];
 
-  /** Based on the screen size, switch from standard to one column per row */
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
-      if (matches) {
-        return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-          { title: 'Card 2', cols: 1, rows: 1 },
-          { title: 'Card 3', cols: 1, rows: 1 },
-          { title: 'Card 4', cols: 1, rows: 1 },
-        ];
-      }
+  // injecting currency service into th currency body
+  constructor(private currencyService: CurrencyService) {}
 
-      return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-        { title: 'Card 2', cols: 1, rows: 1 },
-        { title: 'Card 3', cols: 1, rows: 2 },
-        { title: 'Card 4', cols: 1, rows: 1 },
-      ];
-    })
-  );
+  ngOnInit(): void {
+    this.currencies = this.currencyService.getCurrencies();
+  }
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  updateSelectedValueReceiving(selectedValue: string) {
+    this.selectedValueReceiving = selectedValue;
+    this.updateReceivingAmount();
+  }
+
+  updateSelectedValueSending(selectedValue: string) {
+    this.selectedValueSending = selectedValue;
+    this.updateReceivingAmount();
+  }
+
+  updateReceivingAmount(amount: string = this.sendingAmount) {
+    // set amount to sending amount in currency body component
+    this.sendingAmount = amount;
+
+    // check if no value has been entered or no currency has been selected
+    if (
+      this.sendingAmount === '' ||
+      this.selectedValueSending == null ||
+      this.selectedValueReceiving == null
+    ) {
+      this.receivingAmount = '0.00';
+      return;
+    }
+
+    // check if the sending currency is the same as the receiving one
+    if (this.selectedValueSending === this.selectedValueReceiving) {
+      console.log('amount in if: ', this.sendingAmount);
+      this.receivingAmount = amount;
+      return;
+    }
+
+    // get the currency being used for sending
+    var currency: Currency[] = this.currencies.filter(
+      (c) => c.name === this.selectedValueSending
+    );
+
+    // get exchage rate for receiving amount
+    var exchangeRate = currency[0].value[this.selectedValueReceiving];
+
+    // update receiving amount with calculated amount
+    this.receivingAmount =
+      isNaN(parseFloat(this.sendingAmount)) || this.sendingAmount === ''
+        ? '0.00'
+        : (exchangeRate * parseInt(this.sendingAmount)).toFixed(2).toString();
+  }
+
+  // clear sending and receiving amounts
+  clearAmounts() {
+    this.sendingAmount = '';
+    this.receivingAmount = '';
+  }
 }
