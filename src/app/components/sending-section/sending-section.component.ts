@@ -50,6 +50,7 @@ export class SendingSectionComponent implements OnInit {
   clearAmounts() {
     this.sendingAmount = '';
     this.receivingAmount = '';
+    this.updateReceiving();
   }
 
 }
