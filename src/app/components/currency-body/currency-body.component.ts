@@ -18,7 +18,9 @@ export class CurrencyBodyComponent {
   constructor(private currencyService: CurrencyService) {}
 
   ngOnInit(): void {
-    this.currencies = this.currencyService.getCurrencies();
+    this.currencyService.getCurrencies().subscribe((currencies) => {
+      this.currencies = currencies;
+    });
   }
 
   updateSelectedValueReceiving(selectedValue: string) {
@@ -58,7 +60,7 @@ export class CurrencyBodyComponent {
     );
 
     // get exchage rate for receiving amount
-    var exchangeRate = currency[0].value[this.selectedValueReceiving];
+    var exchangeRate = currency[0].values[this.selectedValueReceiving];
 
     // update receiving amount with calculated amount
     this.receivingAmount =

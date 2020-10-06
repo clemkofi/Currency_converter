@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +13,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { FooterComponent } from './components/layout/footer/footer.component';
 import { CurrencyBodyComponent } from './components/currency-body/currency-body.component';
 import { MaterialModule } from './material/material.module';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +23,7 @@ import { MaterialModule } from './material/material.module';
     ReceivingSectionComponent,
     FooterComponent,
     CurrencyBodyComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +33,7 @@ import { MaterialModule } from './material/material.module';
     ReactiveFormsModule,
     LayoutModule,
     MaterialModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
